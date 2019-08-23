@@ -1,7 +1,9 @@
 import React, { useEffect, useState } from "react";
 import axios from 'axios';
 import { Link } from "react-router-dom";
-
+import { Card, Icon } from 'semantic-ui-react';
+import { Route } from 'react-router-dom';
+import CharacterCard from "./CharacterCard";
  const CharacterList = props => {
   const [characters, setCharacters] = useState([]);
 
@@ -12,7 +14,7 @@ import { Link } from "react-router-dom";
     .get(`https://rickandmortyapi.com/api/character/`)
     .then(response => {
       setCharacters(response.data.results);
-      console.log(response.data.results);
+      console.log(response.data)
   
     })
     .catch(error => {
@@ -42,27 +44,18 @@ import { Link } from "react-router-dom";
 
 
 function CharacterData({characters}) {
-  const { name, gender, species, origin, status} = characters;
+  
   return (
     <Link to={`/charater/${characters.id}`}>
-    <div className="cardList" >
-      <img src={characters.image}></img>
-      <div className="card">
-      Name:<h2>{characters.name}</h2>
-      </div>
-      <div className="card">
-      Gender:<h3>{characters.gender}</h3>
-      </div>
-      <div className="card">
-      species:<h3> {characters.species}</h3>
-      </div>
-      <div className="card">
-      Status:<h3>{characters.status}</h3>
-      </div>
-      
+   
+     <Card image={characters.image}
+           header={characters.name}
+           description={characters.gender} 
+           extra={characters.species}
+           />
 
-      
-    </div>
+
+    
     </Link>
   )
   

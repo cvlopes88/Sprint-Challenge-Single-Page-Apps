@@ -3,12 +3,12 @@ import axios from 'axios';
 
 const CharacterCard = (props) => {
 
-const [charactersCard, setCharactersCard] = useState([]);
+const [charactersCard, setCharactersCard] = useState();
 useEffect(() => {
-  const id = props.match.params.id;
+  const character = props.match.params.id;
 
   axios
-  .get(`https://rickandmortyapi.com/api/character/${id}`)
+  .get(`https://rickandmortyapi.com/api/character/${character}`)
   .then(response => {
     setCharactersCard(response.data.results);
     console.log(response.data.results)
@@ -18,7 +18,7 @@ useEffect(() => {
     console.error(error);
   });
 
-},[props.id])
+},[CharacterCard])
 
 
 // if (!character) {
@@ -31,7 +31,7 @@ const {name, gender, species, origin, status} = charactersCard
   return (
     <div>
       <div>
-        <h3>{name}</h3>
+        <h3>{charactersCard.name}</h3>
       </div>
     </div>
   )

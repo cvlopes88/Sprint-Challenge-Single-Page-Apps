@@ -15,7 +15,9 @@ export default function App() {
       <Header />
       <TabNav />
       {/* <CharacterList /> */}
-    <Route exact path="/" component={WelcomePage} />
+    
+      <Route exact path="/character/:characterid" component={CharacterCard} />
+      // render={props => (<CharacterList {...props}  />)} />
      
       
     </main>
